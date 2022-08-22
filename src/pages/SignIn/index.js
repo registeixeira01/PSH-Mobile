@@ -7,10 +7,13 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native'
 import * as animatable from 'react-native-animatable'
 import { Header } from 'react-native/Libraries/NewAppScreen';
 
 export default function SignIn() {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
@@ -28,9 +31,10 @@ export default function SignIn() {
                 <TextInput
                     placeholder="Senha"
                     style={styles.input}
+                    secureTextEntry
                 />
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('Inicio')}>
                     <Text style={styles.textButton}>Acessar</Text>
                 </TouchableOpacity>
 
