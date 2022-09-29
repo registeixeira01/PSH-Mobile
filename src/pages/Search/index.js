@@ -1,11 +1,10 @@
-import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import api from '../../services/api';
 
 export default function Search() {
-  const [eventos, setEvent] = useState({});
+  const [evento, setEvent] = useState({});
 
   useEffect(() => {
     api.get('List').then(({ data }) => {
@@ -15,9 +14,10 @@ export default function Search() {
 
   return (
     <View>
-      {eventos.map(item => {
+      {evento.map(item => 
+      (
         <Text style={styles.text}>{item.Descricao}</Text>
-      })}
+      ))}
     </View>
   );
 }
