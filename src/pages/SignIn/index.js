@@ -34,8 +34,12 @@ export default function SignIn() {
                     secureTextEntry
                 />
 
-                <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('Inicio')}>
-                    <Text style={styles.textButton}>Acessar</Text>
+                <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('Home')}>
+                    <Text style={styles.textButton}>Acessar ONG</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('Usuario')}>
+                    <Text style={styles.textButton}>Acessar Usuario</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.buttonRegister}>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import CardMessage from '../../../components/CardMessage';
 import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native'
 
@@ -25,7 +24,7 @@ export default function Home() {
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('Search')}
+                onPress={() => navigation.navigate('CadEvento')}
             >
                 <Text style={styles.buttonText}>Cadastrar novo evento</Text>
             </TouchableOpacity>

@@ -3,9 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { View, Text, StyleSheet } from 'react-native';
-import { MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
+import { Entypo, Feather } from '@expo/vector-icons';
 
-import Inicio from '../pages/Home'
+
 import CadEvento from '../pages/CadEvento'
 import Ajudar from '../pages/Ajudar'
 import Perfil from '../pages/Perfil'
@@ -13,17 +13,15 @@ import Welcome from '../pages/Welcome'
 import SignIn from '../pages/SignIn'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Home from '../pages/Home';
-import { TouchableHighlight } from 'react-native-web';
 import HomeUser from '../pages/HomeUser';
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export function Tabs() {
+export function EventoTabsRoutes() {
     return (
         <Tab.Navigator
-            screenOptions={({ Routes }) => ({
+            screenOptions={() => ({
                 tabBarStyle: {
                     backgroundColor: '#1E90FF',
                     Colors: '#000',
@@ -40,8 +38,8 @@ export function Tabs() {
         >
 
             <Tab.Screen
-                name="Inicio"
-                component={Inicio}
+                name="Home"
+                component={Home}
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="home" size={size} color={color} />
@@ -49,11 +47,11 @@ export function Tabs() {
                 }}
             />
             <Tab.Screen
-                name="Novo Evento"
+                name="CadEvento"
                 component={CadEvento}
                 options={{
                     tabBarIcon: ({ size, color }) => (
-                        <MaterialIcons name="event" size={size} color={color} />
+                        <Feather name="search" size={size} color={color} />
                     )
                 }}
             />
@@ -78,7 +76,7 @@ export function Tabs() {
         </Tab.Navigator>
     )
 }
-export default function Routes() {
+export function EventoStackRoutes() {
     return (
         <Stack.Navigator>
             <Stack.Screen
@@ -93,23 +91,18 @@ export default function Routes() {
             />
             <Stack.Screen
                 name="Home"
-                component={Tabs}
+                component={Home}
                 options={{ headerShown: false }} />
 
             <Stack.Screen
-                name="Usuario"
+                name="HomeUser"
                 component={HomeUser}
-                options={{ headerShown: false }}
-            />
+                options={{ headerShown: false }} />
 
             <Stack.Screen
                 name="CadEvento"
                 component={CadEvento}
-                options={{
-                    title: 'Cadastrar Novo Evento',
-                    headerTitleAlign: 'center'
-                    }} />
-
+                options={{ headerShown: false }} />
         </Stack.Navigator>
     )
 }
