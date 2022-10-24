@@ -1,18 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import {
     View,
     Text,
     StyleSheet,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'
 import * as animatable from 'react-native-animatable'
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import api from '../../services/api';
+import usuarioService from '../../services/UsuarioServices';
 
 export default function SignIn() {
     const navigation = useNavigation();
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+
+
+    const entrar = () => {
+
+        let data = {
+            email: email,
+            password: password
+        }
+
+        usuarioService.login(data)
+            .then((response) => {
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: "Home" }]
+                })
+            })
+            .catch((error) => {
+                Alert.alert("Usuario ou senha invalido!")
+            })
+    }
+
+
+
+
 
     return (
         <View style={styles.container}>
@@ -24,21 +54,23 @@ export default function SignIn() {
                 <Text style={styles.title}>Email</Text>
                 <TextInput
                     placeholder="Digite seu email"
+                    onChangeText={value => setEmail(value)}
                     style={styles.input}
                 />
 
                 <Text style={styles.title}>Senha</Text>
                 <TextInput
                     placeholder="Senha"
+                    onChangeText={value => setPassword(value)}
                     style={styles.input}
                     secureTextEntry
                 />
 
-                <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('Home')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
                     <Text style={styles.textButton}>Acessar ONG</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('Usuario')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Usuario')}>
                     <Text style={styles.textButton}>Acessar Usuario</Text>
                 </TouchableOpacity>
 
@@ -50,6 +82,7 @@ export default function SignIn() {
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -77,37 +110,37 @@ const styles = StyleSheet.create({
         paddingEnd: '5%'
 
     },
-    title:{
+    title: {
         fontSize: 20,
         marginTop: 28,
         color: '#1E90FF'
     },
-    input:{
+    input: {
         borderBottomWidth: 1,
         height: 40,
         marginBottom: 12,
         fontSize: 16,
     },
-    button:{
-        backgroundColor:'#1E90FF',
+    button: {
+        backgroundColor: '#1E90FF',
         width: '100%',
         borderRadius: 8,
         paddingVertical: 8,
         marginTop: 14,
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    textButton:{
+    textButton: {
         color: '#ffff',
         fontSize: 18,
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
-    buttonRegister:{
+    buttonRegister: {
         marginTop: 14,
         alignSelf: 'center',
     },
-    textRegister:{
-        color:'#1E90FF'
+    textRegister: {
+        color: '#1E90FF'
     }
 
 

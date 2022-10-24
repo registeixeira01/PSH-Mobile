@@ -4,7 +4,7 @@ import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
 import { Card, Button, Icon } from '@rneui/themed';
 import CardMessagem from '../../../components/CardMessagem';
-import { ListArea } from './styled';
+import { ListArea, TitleEventos } from './styled';
 
 
 export default function HomeUser() {
@@ -23,14 +23,26 @@ export default function HomeUser() {
     }, [])
 
     return (
-        <ListArea>
-            {eventos.map(item => (
-                <View key={item.Codigo} >
-                    <CardMessagem   NomeEvento={item.NomeEvento}
-                                    Descricao={item.Descricao} />
-                </View>
-            ))}
-        </ListArea>
+        <ScrollView >
+            <TitleEventos>
+                Olá usuário!
+            </TitleEventos>
+            <ListArea>
+                {eventos.map(item => (
+                    <View key={item.Codigo} >
+                        <CardMessagem NomeEvento={item.NomeEvento}
+                            Descricao={item.Descricao}
+                            EnderecoEvento={item.EnderecoEvento}
+                            NumeroEvento={item.NumeroEvento}
+                            BairroEvento={item.BairroEvento}
+                            CidadeEvento={item.CidadeEvento}
+                            UfEvento={item.UfEvento}
+                            DuracaoEvento={item.DuracaoEvento}
+                            PontuacaoHora={item.PontuacaoHora} />
+                    </View>
+                ))}
+            </ListArea>
+        </ScrollView>
     )
 }
 

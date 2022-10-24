@@ -15,6 +15,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Home from '../pages/Home';
 import { TouchableHighlight } from 'react-native-web';
 import HomeUser from '../pages/HomeUser';
+import VoluntarioEvento from '../pages/VoluntarioEvento';
 
 
 const Stack = createNativeStackNavigator();
@@ -103,12 +104,18 @@ export default function Routes() {
             />
 
             <Stack.Screen
+                name="Voluntario"
+                component={VoluntarioEvento}
+                options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
                 name="CadEvento"
                 component={CadEvento}
                 options={{
                     title: 'Cadastrar Novo Evento',
                     headerTitleAlign: 'center'
-                    }} />
+                }} />
 
         </Stack.Navigator>
     )

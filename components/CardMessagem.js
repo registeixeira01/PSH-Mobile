@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 
 const Area = styled.TouchableOpacity`
-    background-color: #FFFFFF;
+    background-color: #1E90FF;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 20px;
     border-radius: 20px;
     padding: 15px;
@@ -12,35 +15,80 @@ const Area = styled.TouchableOpacity`
 `;
 
 const InfoArea = styled.View`
-    margin-left: 20px;
     justify-content: space-between;
 `;
 
-const SeeProfileButton = styled.View`
-    width: 85px;
-    height: 26px;
-    border: 1px solid #4EADBE;
-    border-radius: 10px;
+const TextArea = styled.View`
+    justify-content: space-between;
+    border: 1px solid;
+    margin-bottom: 10px;
+    background-color: #FFFF;
+`;
+
+const CadButton = styled.TouchableOpacity`
+    width: 150px;
+    height: 40px;
+    background-color: #00FF7F;
+    border-radius: 50px;
     justify-content: center;
     align-items: center;
 `;
 
-const SeeProfileButtonText = styled.Text`
-    font-size: 13px;
-    color: #268596;
+const CadButtonText = styled.Text`
+    font-size: 20px;
+    color: #ffff;
+    font-weight: bold;
+`;
+
+const TitleMessage = styled.Text`
+    font-size: 30px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #ffff;
+`;
+
+const Description = styled.Text`
+    font-size: 17px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    font-weight: lighter;
+`;
+
+const ImageEvent = styled.Image`
+    width: 320px;
+    height: 200px;
+`;
+
+const Infos = styled.Text`
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 3px;
+    justify-content: space-between;
+    font-weight: lighter;
 `;
 
 export default (props) => {
-    const {NomeEvento, Descricao} = props;
+    const { NomeEvento, Descricao, EnderecoEvento, NumeroEvento, BairroEvento, CidadeEvento, UfEvento, DuracaoEvento, PontuacaoHora } = props;
+    const navigation = useNavigation();
 
     return (
         <Area>
             <InfoArea>
-                <Text > {NomeEvento} </Text>
-                <Text > {Descricao} </Text>
-                <SeeProfileButton>
-                    <SeeProfileButtonText>Ver Perfil</SeeProfileButtonText>
-                </SeeProfileButton>
+                <TitleMessage > {NomeEvento} </TitleMessage>
+                <TextArea>
+                    <ImageEvent
+                    source={require('../src/assets/evento.png')}
+                    />
+                    <Description > {Descricao} </Description>
+                    <Infos >Endereço do evento: {EnderecoEvento} nº {NumeroEvento}, {BairroEvento}, {CidadeEvento} - {UfEvento} {'\n'}
+                    Duração do evento: {DuracaoEvento} horas {'\n'}
+                    Pontuação: {PontuacaoHora} pontos por hora </Infos>
+                </TextArea>
+                <CadButton onPress={() => navigation.navigate('Voluntario')}>
+                    <CadButtonText> Cadastrar </CadButtonText>
+                </CadButton>
             </InfoArea>
         </Area>
     );

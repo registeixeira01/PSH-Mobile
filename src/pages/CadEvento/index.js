@@ -139,13 +139,12 @@ export default function CadEvento({ navigation }) {
                         onChangeText={text => setPontuacaoHora(text)}
                         value={pontuacaoHora} />
                 </View>
+
+                <View style={styles.container}>
+                    <Button style={styles.btnCadastro} onPress={() => cadastro()} title="Salvar" ></Button>
+                    <StatusBar style="auto" />
+                </View>
             </ScrollView>
-
-            <View style={styles.container}>
-                <Button style={styles.btnCadastro} onPress={() => cadastro()} title="Salvar" ></Button>
-                <StatusBar style="auto" />
-            </View>
-
         </View>
 
     );
