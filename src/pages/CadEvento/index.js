@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, StyleSheet, TextInput, Button, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, ScrollView, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import api from '../../services/api';
@@ -16,6 +16,7 @@ export default function CadEvento({ navigation }) {
     const [ufEvento, setUfEvento] = useState("");
     const [duracaoEvento, setDuracaoEvento] = useState("");
     const [pontuacaoHora, setPontuacaoHora] = useState("");
+    const [horarioEvento, setHorarioEvento] = useState("");
 
     function cadastro() {
         try {
@@ -31,7 +32,8 @@ export default function CadEvento({ navigation }) {
                     CidadeEvento: cidadeEvento,
                     UfEvento: ufEvento,
                     DuracaoEvento: duracaoEvento,
-                    PontuacaoHora: pontuacaoHora
+                    PontuacaoHora: pontuacaoHora,
+                    HorarioEvento: horarioEvento
                 });
 
             setNomeEvento(""),
@@ -44,8 +46,12 @@ export default function CadEvento({ navigation }) {
                 setCidadeEvento,
                 setUfEvento(""),
                 setDuracaoEvento(""),
-                setPontuacaoHora("");
+                setPontuacaoHora(""),
+                setHorarioEvento("");
 
+                Alert.alert(
+                    "Informação",
+                    "Evento criado com sucesso!")
             navigation.goBack();
 
         } catch (error) {
@@ -56,9 +62,7 @@ export default function CadEvento({ navigation }) {
     return (
         <View style={styles.container}>
 
-            <View style={styles.container}>
-                <Text style={styles.titulo} >Cadastro de eventos!</Text>
-            </View>
+
             <ScrollView >
                 <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
@@ -79,68 +83,58 @@ export default function CadEvento({ navigation }) {
                         placeholder="Descriçao do evento"
                         onChangeText={text => setDescricao(text)}
                         value={descricao} />
-                </View>
 
-                <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
                         placeholder="Data do evento"
                         keyboardType="numeric"
                         onChangeText={text => setDataEvento(text)}
                         value={dataEvento} />
-                </View>
 
-                <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
                         placeholder="Endereço do evento"
                         onChangeText={text => setEnderecoEvento(text)}
                         value={enderecoEvento} />
-                </View>
 
-                <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
                         placeholder="Nº"
                         keyboardType="numeric"
                         onChangeText={text => setNumeroEvento(text)}
                         value={numeroEvento} />
-                </View>
 
-                <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
                         placeholder="Bairro"
                         onChangeText={text => setBairroEvento(text)}
                         value={bairroEvento} />
-                </View>
-                <View style={styles.container}>
+
                     <TextInput style={styles.inputEvento}
                         placeholder="Cidade"
                         onChangeText={text => setCidadeEvento(text)}
                         value={cidadeEvento} />
-                </View>
 
-                <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
                         placeholder="UF"
                         onChangeText={text => setUfEvento(text)}
                         value={ufEvento} />
-                </View>
 
-                <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
                         placeholder="Duração do evento"
                         keyboardType="numeric"
                         onChangeText={text => setDuracaoEvento(text)}
                         value={duracaoEvento} />
-                </View>
 
-                <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
                         placeholder="Pontuação por hora"
                         keyboardType="numeric"
                         onChangeText={text => setPontuacaoHora(text)}
                         value={pontuacaoHora} />
-                </View>
 
-                <View style={styles.container}>
+
+                    <TextInput style={styles.inputEvento}
+                        placeholder="Horário do evento"
+                        keyboardType="numeric"
+                        onChangeText={text => setHorarioEvento(text)}
+                        value={horarioEvento} />
+
                     <Button style={styles.btnCadastro} onPress={() => cadastro()} title="Salvar" ></Button>
                     <StatusBar style="auto" />
                 </View>
@@ -185,6 +179,6 @@ const styles = StyleSheet.create({
         outline: 'solid 1px silver',
         padding: 4,
         fontSize: 14,
-        marginBottom: 10
+        marginBottom: 10,
     },
 });

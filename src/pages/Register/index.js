@@ -7,44 +7,57 @@ import {
     TextInput,
     TouchableOpacity,
     Alert,
-    ScroolView
+    ScrollView
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'
 import * as animatable from 'react-native-animatable'
+import { Header } from 'react-native/Libraries/NewAppScreen';
+import api from '../../services/api';
+import usuarioService from '../../services/UsuarioServices';
 import app from '../../services/UsuarioServices';
 
-export default function SignIn() {
+export default function Register() {
     const navigation = useNavigation();
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const entrar = () => {
+    const cadastro = () => {
 
         let data = {
+            name: name,
             email: email,
             password: password
         }
 
-        app.login(data)
+        app.cadastrar(data)
             .then((response) => {
+                Alert.alert("Bem vindo", "Usuário cadastrado com sucesso!")
                 navigation.reset({
                     routes: [{ name: "Usuario" }]
                 })
             })
             .catch((error) => {
-                Alert.alert("Erro ao logar :(", "Usuario ou senha invalidos")
+                console.log(error)
             })
     }
 
     return (
-        <ScroolView>
+        <ScrollView>
             <View style={styles.container}>
                 <animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-                    <Text style={styles.message}>Bem-vindo(a)</Text>
+                    <Text style={styles.message}>Cadastre-se antes de começar</Text>
                 </animatable.View>
 
                 <animatable.View animation="fadeInUp" style={styles.containerForm}>
+                    <Text style={styles.title}>Nome Completo</Text>
+                    <TextInput
+                        placeholder="Digite seu Nome Completo"
+                        onChangeText={text => setName(text)}
+                        style={styles.input}
+                    />
+
                     <Text style={styles.title}>Email</Text>
                     <TextInput
                         placeholder="Digite seu email"
@@ -57,24 +70,20 @@ export default function SignIn() {
                         placeholder="Senha"
                         onChangeText={text => setPassword(text)}
                         style={styles.input}
-                        secureTextEntry
+                        secureTextEntry={true}
                     />
 
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
-                        <Text style={styles.textButton}>Acessar ONG</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => cadastro()}>
+                        <Text style={styles.textButton}>Cadastrar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => entrar()}>
-                        <Text style={styles.textButton}>Acessar Usuario</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate("Register")}>
-                        <Text style={styles.textRegister}>Não possui uma conta? Cadastre-se</Text>
+                    <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate("SignIn")}>
+                        <Text style={styles.textRegister}>Ja possui uma conta? Entre</Text>
                     </TouchableOpacity>
 
                 </animatable.View>
             </View>
-        </ScroolView>
+        </ScrollView>
     )
 }
 

@@ -15,6 +15,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Home from '../pages/Home';
 import { TouchableHighlight } from 'react-native-web';
 import HomeUser from '../pages/HomeUser';
+import Register from '../pages/Register';
 import VoluntarioEvento from '../pages/VoluntarioEvento';
 
 
@@ -46,16 +47,17 @@ export function Tabs() {
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="home" size={size} color={color} />
-                    )
+                    ), headerShown: false
                 }}
             />
             <Tab.Screen
-                name="Novo Evento"
+                name="CadEvento"
                 component={CadEvento}
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <MaterialIcons name="event" size={size} color={color} />
-                    )
+                    ), title: 'Novo Evento',
+                    headerTitleAlign: 'center'
                 }}
             />
             <Tab.Screen
@@ -64,7 +66,7 @@ export function Tabs() {
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="help-with-circle" size={size} color={color} />
-                    )
+                    ), headerShown: false
                 }}
             />
             <Tab.Screen
@@ -73,7 +75,7 @@ export function Tabs() {
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <Feather name="user" size={size} color={color} />
-                    )
+                    ), headerShown: false
                 }}
             />
         </Tab.Navigator>
@@ -90,6 +92,11 @@ export default function Routes() {
             <Stack.Screen
                 name="SignIn"
                 component={SignIn}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Register"
+                component={Register}
                 options={{ headerShown: false }}
             />
             <Stack.Screen

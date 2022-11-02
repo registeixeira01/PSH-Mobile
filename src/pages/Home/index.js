@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native'
+import { ListArea, TitleEventos } from './styled';
+import CardOng from '../../../components/CardOng';
 
 export default function Home() {
 
@@ -10,8 +12,7 @@ export default function Home() {
 
     useEffect(() => {
 
-        const subs = navigation.addListener('focus', () =>
-        {
+        const subs = navigation.addListener('focus', () => {
             api.get('List').then(({ data }) => {
                 setEventos(data)
             });
@@ -20,21 +21,30 @@ export default function Home() {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <ScrollView >
+            <View>
+                <TitleEventos>
+                    Olá ONG!
+                </TitleEventos>
+                <ListArea>
+                    {eventos.map(item => (
+                        <View key={item.Codigo} >
+                            <CardOng NomeEvento={item.NomeEvento}
+                                OngResponsavel={item.OngResponsavel}
+                            />
+                        </View>
+                    ))}
+                </ListArea>
+            </View>
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('CadEvento')}
-            >
+                onPress={() => navigation.navigate('CadEvento')}>
                 <Text style={styles.buttonText}>Cadastrar novo evento</Text>
             </TouchableOpacity>
+        </ScrollView>
 
-            {eventos.map(item => {
-                return <Text key={item.Codigo} style={styles.text}>{item.NomeEvento}</Text>
-            })}
-
-        </View>
-    );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -55,7 +65,7 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         width: '60%',
         alignSelf: 'center',
-        bottom: '15%',
+        bottom: '1%',
         alignItems: 'center',
         justifyContent: 'center',
     },

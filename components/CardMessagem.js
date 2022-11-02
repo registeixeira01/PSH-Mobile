@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Alert, Button } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -20,7 +20,6 @@ const InfoArea = styled.View`
 
 const TextArea = styled.View`
     justify-content: space-between;
-    border: 1px solid;
     margin-bottom: 10px;
     background-color: #FFFF;
 `;
@@ -70,8 +69,38 @@ const Infos = styled.Text`
 `;
 
 export default (props) => {
-    const { NomeEvento, Descricao, EnderecoEvento, NumeroEvento, BairroEvento, CidadeEvento, UfEvento, DuracaoEvento, PontuacaoHora } = props;
+    const { NomeEvento, Descricao, EnderecoEvento, NumeroEvento, BairroEvento, CidadeEvento, UfEvento, DuracaoEvento, PontuacaoHora, DataEvento } = props;
     const navigation = useNavigation();
+
+    const showAlert = () =>
+        Alert.alert(
+            "Atenção",
+            "Você confirma sua inscrição neste evento?",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => Alert.alert("Inscrição cancelada", "Sua inscrição foi cancelada"),
+                    style: "cancel",
+                  },
+                  {
+                    text: "Confirmar",
+                    onPress: () => Alert.alert("Ótima escolha!" , "Obrigado por ser um voluntário, você faz parte da mudança!"),
+                    style: "cancel",
+                  }
+                ],
+        );
+    // let data = new Date();
+    // let dataFormatada = (data.getDate() + "/" + ((data.getMonth() + 1)) + "/" + (data.getFullYear()));
+    // console.log(dataFormatada);
+    function adicionaZero(numero){
+        if (numero <= 9)
+            return "0" + numero;
+        else
+            return numero;
+    }
+    let dataAtual = new Date({DataEvento}); //29/01/2020
+    let dataAtualFormatada = (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
+    console.log(dataAtualFormatada);
 
     return (
         <Area>
@@ -84,9 +113,10 @@ export default (props) => {
                     <Description > {Descricao} </Description>
                     <Infos >Endereço do evento: {EnderecoEvento} nº {NumeroEvento}, {BairroEvento}, {CidadeEvento} - {UfEvento} {'\n'}
                     Duração do evento: {DuracaoEvento} horas {'\n'}
-                    Pontuação: {PontuacaoHora} pontos por hora </Infos>
+                    Pontuação: {PontuacaoHora} pontos por hora {'\n'}
+                    Data do Evento: {DataEvento} </Infos>
                 </TextArea>
-                <CadButton onPress={() => navigation.navigate('Voluntario')}>
+                <CadButton onPress={() => showAlert()}>
                     <CadButtonText> Cadastrar </CadButtonText>
                 </CadButton>
             </InfoArea>
