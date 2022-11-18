@@ -8,7 +8,7 @@ import axios from "axios"
 class UsuarioService{
     async login(data){
         return axios({
-            url: "http://192.168.1.14:4100/login",
+            url: "http://192.168.0.11:4100/login",
             method: "POST",
             timeout:500,
             data: data,
@@ -24,7 +24,7 @@ class UsuarioService{
 
     async cadastrar(data){
         return axios({
-            url: "http://192.168.1.14:4100/cadastrar",
+            url: "http://192.168.0.11:4100/cadastrar",
             method: "POST",
             timeout:500,
             data: data,

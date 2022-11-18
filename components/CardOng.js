@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native';
 
 
 const Area = styled.TouchableOpacity`
@@ -84,6 +85,7 @@ export default (props) => {
                     <Description > ONG Responsável: {OngResponsavel} </Description>
                 </TextArea>
             </InfoArea>
+            
         </Area>
     );
 }

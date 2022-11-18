@@ -17,6 +17,7 @@ import { TouchableHighlight } from 'react-native-web';
 import HomeUser from '../pages/HomeUser';
 import Register from '../pages/Register';
 import VoluntarioEvento from '../pages/VoluntarioEvento';
+import Mapa from '../pages/Mapa';
 
 
 const Stack = createNativeStackNavigator();
@@ -123,6 +124,12 @@ export default function Routes() {
                     title: 'Cadastrar Novo Evento',
                     headerTitleAlign: 'center'
                 }} />
+
+            <Stack.Screen
+                name="Mapa"
+                component={Mapa}
+                options={{ headerShown: false }}
+            />
 
         </Stack.Navigator>
     )

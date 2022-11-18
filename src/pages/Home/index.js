@@ -4,6 +4,7 @@ import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
 import CardOng from '../../../components/CardOng';
+import { Button } from 'react-native';
 
 export default function Home() {
 
@@ -27,11 +28,11 @@ export default function Home() {
                     Olá ONG!
                 </TitleEventos>
                 <ListArea>
-                    {eventos.map(item => (
-                        <View key={item.Codigo} >
+                     {eventos.map(item => ( 
+                        <View key={item.Codigo}  >
                             <CardOng NomeEvento={item.NomeEvento}
-                                OngResponsavel={item.OngResponsavel}
-                            />
+                                OngResponsavel={item.OngResponsavel} />
+                                
                         </View>
                     ))}
                 </ListArea>
@@ -42,6 +43,10 @@ export default function Home() {
                 onPress={() => navigation.navigate('CadEvento')}>
                 <Text style={styles.buttonText}>Cadastrar novo evento</Text>
             </TouchableOpacity>
+
+           <Button style={styles.buttonMapa}
+                onPress={() => navigation.navigate('Mapa')} title="mapa"/>
+               
         </ScrollView>
 
     )
@@ -52,7 +57,8 @@ const styles = StyleSheet.create({
         flex: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ddd'
+        backgroundColor: '#ddd',
+        
     },
 
     text: {
@@ -65,9 +71,13 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         width: '60%',
         alignSelf: 'center',
-        bottom: '1%',
+        marginBottom: '3%',
+        bottom: '8%',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    buttonMapa: {
+      marginTop:1
     },
     buttonText: {
         fontSize: 18,

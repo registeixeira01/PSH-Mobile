@@ -38,7 +38,7 @@ export default function SignIn() {
     }
 
     return (
-        <ScroolView>
+        
             <View style={styles.container}>
                 <animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
                     <Text style={styles.message}>Bem-vindo(a)</Text>
@@ -74,7 +74,7 @@ export default function SignIn() {
 
                 </animatable.View>
             </View>
-        </ScroolView>
+            
     )
 }
 
