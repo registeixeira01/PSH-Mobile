@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
 import CardMessagem from '../../../components/CardMessagem';
 import { ListArea, TitleEventos } from './styled';
+import app from '../../services/UsuarioServices';
 
 
-export default function HomeUser() {
+export default function CardsEventos() {
 
     const [eventos, setEventos] = useState([]);
     const navigation = useNavigation();
@@ -14,7 +15,7 @@ export default function HomeUser() {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            api.get('List').then(({ data }) => {
+            app.ListarEventos('ListarEventos').then(({ data }) => {
                 setEventos(data)
             });
         })
@@ -29,7 +30,7 @@ export default function HomeUser() {
             <ListArea>
                 {eventos.map(item => (
                     <View key={item.Codigo} >
-                        <CardMessagem NomeEvento={item.NomeEvento}
+                        <CardMessagem  NomeEvento={app.nomeEvento}
                             Descricao={item.Descricao}
                             EnderecoEvento={item.EnderecoEvento}
                             NumeroEvento={item.NumeroEvento}
@@ -45,3 +46,4 @@ export default function HomeUser() {
         </ScrollView>
     )
 }
+

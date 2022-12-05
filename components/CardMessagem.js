@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet, Text, View, Image, Alert, Button } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+
+
+
 
 
 const Area = styled.TouchableOpacity`

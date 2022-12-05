@@ -7,44 +7,57 @@ import {
     TextInput,
     TouchableOpacity,
     Alert,
-    ScroolView
+    ScrollView
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native'
 import * as animatable from 'react-native-animatable'
-import app from '../../services/UsuarioServices';
+import app from '../../../services/UsuarioServices';
+import { Icon } from '@rneui/base';
 
-export default function SignIn() {
+export default function CadastroDoador() {
     const navigation = useNavigation();
-    const [email, setEmail] = useState("");
+    const [nomeDoador, setNomeDoador] = useState("");
+    const [emailDoador, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [cepDoador, setCepDoador] = useState("");
 
-    const entrar = () => {
+    const cadastrar = () => {
 
         let data = {
-            email: email,
-            password: password
+            nomeDoador: nomeDoador,
+            emailDoador: emailDoador,
+            password: password,
+           cepDoador: cepDoador
         }
 
-        app.login(data)
+        app.cadastroDoador(data)
             .then((response) => {
+                Alert.alert("Bem vindo", "Doador cadastrado com sucesso!")
                 navigation.reset({
-                    routes: [{ name: "Usuario" }]
+                    routes: [{ name: "InicioVoluntario" }]
                 })
             })
             .catch((error) => {
-                Alert.alert("Erro ao logar :(", "Usuario ou senha invalidos")
+                console.log(error)
             })
     }
 
     return (
-        
+        <ScrollView>
             <View style={styles.container}>
                 <animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
-                    <Text style={styles.message}>Bem-vindo(a)</Text>
+                    <Text style={styles.message}>Cadastre-se antes para começar a doar...</Text>
                 </animatable.View>
 
                 <animatable.View animation="fadeInUp" style={styles.containerForm}>
+                    <Text style={styles.title}>Nome Completo</Text>
+                    <TextInput
+                        placeholder="Digite seu Nome Completo"
+                        onChangeText={text => setNomeDoador(text)}
+                        style={styles.input}
+                    />
+
                     <Text style={styles.title}>Email</Text>
                     <TextInput
                         placeholder="Digite seu email"
@@ -57,24 +70,27 @@ export default function SignIn() {
                         placeholder="Senha"
                         onChangeText={text => setPassword(text)}
                         style={styles.input}
-                        secureTextEntry
+                        secureTextEntry={true}
                     />
 
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
-                        <Text style={styles.textButton}>Acessar ONG</Text>
+                    <Text style={styles.title}>Numero do CEP</Text>
+                    <TextInput
+                        placeholder="Digite seu Cep"
+                        onChangeText={text => setCepDoador(text)}
+                        style={styles.input}
+                    />
+
+                    <TouchableOpacity style={styles.button} onPress={() => cadastrar()}>
+                        <Text style={styles.textButton}>Cadastrar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.button} onPress={() => entrar()}>
-                        <Text style={styles.textButton}>Acessar Usuario</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate("Register")}>
-                        <Text style={styles.textRegister}>Não possui uma conta? Cadastre-se</Text>
+                    <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate("EntrarDoador")}>
+                        <Text style={styles.textRegister}>Ja possui uma conta? Entre</Text>
                     </TouchableOpacity>
 
                 </animatable.View>
             </View>
-            
+        </ScrollView>
     )
 }
 
@@ -98,7 +114,7 @@ const styles = StyleSheet.create({
     },
     containerForm: {
         backgroundColor: '#fff',
-        flex: 1,
+        paddingBottom: '60%',
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         paddingStart: '5%',
