@@ -40,11 +40,11 @@ export default function InicioDoador() {
 
             {/* listas de cards */}
                 <ListArea  style={styles.card}>
-                     {eventos.map(item => ( 
+                     {eventos.map(item => (
                         <View key={item.Codigo}  >
                             <CardOng  NomeEvento={item.NomeEvento}
                                 OngResponsavel={item.OngResponsavel} />
-                                
+
                         </View>
                     ))}
                 </ListArea>
@@ -56,12 +56,6 @@ export default function InicioDoador() {
                 <Text style={styles.buttonText}>Cadastrar novo evento</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-                style={styles.buttonDois}
-                onPress={() => navigation.navigate('Mapa')}>
-                <Text style={styles.buttonText}>Acessar Mapa</Text>
-            </TouchableOpacity>
-               
         </ScrollView>
 
     )
@@ -73,13 +67,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#ddd',
-        
+
     },
 
     text: {
         fontSize: 25,
     },
-   
+
     button: {
         position: 'absolute',
         backgroundColor: '#00FF7F',
@@ -91,8 +85,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf:'center',
         justifyContent: 'space-around',
-        
-        
+
+
     },
     buttonDois: {
         position: 'absolute',
@@ -111,7 +105,7 @@ const styles = StyleSheet.create({
         margin: 10,
         alignItems: 'flex-end',
     },
-   
+
     buttonText: {
         fontSize: 18,
         color: '#fff',
@@ -130,7 +124,7 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         shadowColor: '#000',
         elevation:25
-        
+
     },
 
     title: {

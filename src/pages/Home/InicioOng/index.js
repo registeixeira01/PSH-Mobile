@@ -4,6 +4,7 @@ import api from '../../../services/api';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
 import CardOng from '../../../../components/CardOng';
+import CardMessagem from '../../../../components/CardMessagem';
 import { Button } from 'react-native';
 import * as animatable from 'react-native-animatable'
 import { MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
@@ -17,7 +18,7 @@ export default function InicioOng() {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            app.ListarEventos({idOng}).then(({ data }) => {
+            app.ExibirEventos().then(({ data }) => {
                 setEventos(data)
             });
         })
@@ -26,42 +27,26 @@ export default function InicioOng() {
 
     return (
         <ScrollView >
-            <View>
-                {/* header */}
-            <animatable.View style={styles.containerHeader}>
-            <TouchableOpacity
-                style={styles.buttonIcon}
-                onPress= { () => navigation.reset({
-                    routes: [{ name: "BemVindo" }]
-                })}>
-                <MaterialIcons name='exit-to-app' size={38} color='#000' shadowColor="#000" elevation={25} />
-            </TouchableOpacity>
-                <Text style={styles.title}>Inicio</Text>
-            </animatable.View>
-
-            {/* listas de cards */}
-                <ListArea  style={styles.card}>
-                     
-                                
-                      
-                </ListArea>
-            </View>
-
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('CadEvento')}>
-                <Text style={styles.buttonText}>Cadastrar novo evento</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={styles.buttonDois}
-                onPress={() => navigation.navigate('Mapa')}>
-                <Text style={styles.buttonText}>Acessar Mapa</Text>
-            </TouchableOpacity>
-               
+            <TitleEventos>
+                Olá usuário!
+            </TitleEventos>
+            <ListArea>
+                {eventos.map(item => (
+                    <View key={item.idEvento} >
+                        <CardMessagem nomeEvento={item.nomeEvento}
+                            enderecoEvento={item.enderecoEvento}
+                            numeroEvento={item.numeroEvento}
+                            bairroEvento={item.bairroEvento}
+                            cidadeEvento={item.cidadeEvento}
+                            ufEvento={item.ufEvento}
+                            duracaoEvento={item.duracaoEvento}
+                            pontuacao={item.pontuacao} />
+                    </View>
+                ))}
+            </ListArea>
         </ScrollView>
-
     )
+
 }
 
 const styles = StyleSheet.create({
@@ -70,13 +55,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#ddd',
-        
+
     },
 
     text: {
         fontSize: 25,
     },
-   
+
     button: {
         position: 'absolute',
         backgroundColor: '#00FF7F',
@@ -88,8 +73,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf:'center',
         justifyContent: 'space-around',
-        
-        
+
+
     },
     buttonDois: {
         position: 'absolute',
@@ -108,7 +93,7 @@ const styles = StyleSheet.create({
         margin: 10,
         alignItems: 'flex-end',
     },
-   
+
     buttonText: {
         fontSize: 18,
         color: '#fff',
@@ -127,7 +112,7 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         shadowColor: '#000',
         elevation:25
-        
+
     },
 
     title: {

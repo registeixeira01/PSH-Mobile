@@ -22,7 +22,7 @@ export default function EntrarVoluntario() {
     const entrar = () => {
 
         let data = {
-            emailVoluntario: email,
+            emailVoluntario: emailVoluntario,
             password: password
         }
 
@@ -38,7 +38,7 @@ export default function EntrarVoluntario() {
     }
 
     return (
-        
+
             <View style={styles.container}>
                 <animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
                     <Text style={styles.message}>Olá você entrou como Voluntario!!!</Text>
@@ -70,7 +70,7 @@ export default function EntrarVoluntario() {
 
                 </animatable.View>
             </View>
-            
+
     )
 }
 

@@ -1,7 +1,7 @@
 import axios from "axios"
 
 // const app = axios.create({
-//     baseURL: "http://192.168.1.14:4100/"
+//     baseURL: "http://192.168.1.3:3000/"
 // });
 
 
@@ -9,7 +9,7 @@ class UsuarioService {
 
     async loginDoador(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Doadores/loginDoador",
+            url: "http://192.168.1.3:3000/Doadores/loginDoador",
             method: "POST",
             timeout: 500,
             data: data,
@@ -25,7 +25,7 @@ class UsuarioService {
 
     async cadastroDoador(data) {
         return axios({
-            url: "http://192.168.0.8:3000/doadores/cadastrarDoador",
+            url: "http://192.168.1.3:3000/doadores/cadastrarDoador",
             method: "POST",
             timeout: 500,
             data: data,
@@ -45,7 +45,7 @@ class UsuarioService {
 
     async loginVolutario(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Voluntarios/loginVoluntario",
+            url: "http://192.168.1.3:3000/voluntarios/loginVoluntario",
             method: "POST",
             timeout: 500,
             data: data,
@@ -61,7 +61,7 @@ class UsuarioService {
 
     async cadastroVoluntario(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Voluntarios/cadastrarVoluntario",
+            url: "http://192.168.1.3:3000/voluntarios/cadastrarVoluntario",
             method: "POST",
             timeout: 500,
             data: data,
@@ -77,7 +77,7 @@ class UsuarioService {
 
     async ExibirEventos(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Voluntarios/voluntarioListarEventos/",
+            url: "http://192.168.1.3:3000/eventos/listar",
             method: "GET",
             timeout: 500,
             data: data,
@@ -93,7 +93,7 @@ class UsuarioService {
 
     async CadastrarEventos(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Voluntarios/cadastrarVoluntarioEvento/:idEvento",
+            url: "http://192.168.1.3:3000/eventos/cadastrarEvento",
             method: "POST",
             timeout: 500,
             data: data,
@@ -115,7 +115,7 @@ class UsuarioService {
 
     async loginOng(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Ongs/loginOng",
+            url: "http://192.168.1.3:3000/Ongs/loginOng",
             method: "POST",
             timeout: 500,
             data: data,
@@ -131,7 +131,7 @@ class UsuarioService {
 
     async cadastroOng(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Ongs/cadastrarOng",
+            url: "http://192.168.1.3:3000/Ongs/cadastrarOng",
             method: "POST",
             timeout: 500,
             data: data,
@@ -147,7 +147,7 @@ class UsuarioService {
 
     async ListarEventos(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Ongs/ongListarEventos/:idOng",
+            url: "http://192.168.1.3:3000/ongs/listar",
             method: "GET",
             timeout: 500,
             data: data,
@@ -166,11 +166,11 @@ class UsuarioService {
 
 
 
-    // Criar Evento 
+    // Criar Evento
 
     async CriarEventos(data) {
         return axios({
-            url: "http://192.168.0.8:3000/Eventos/cadastrarEvento",
+            url: "http://192.168.1.3:3000/Eventos/cadastrarEvento",
             method: "POST",
             timeout: 500,
             data: data,

@@ -71,7 +71,7 @@ const Infos = styled.Text`
 `;
 
 export default (props) => {
-    const { NomeEvento, Descricao, EnderecoEvento, NumeroEvento, BairroEvento, CidadeEvento, UfEvento, DuracaoEvento, PontuacaoHora, DataEvento } = props;
+    const { idOng, ongResponsavel, nomeEvento, dataEvento, horarioEvento, cepEvento, enderecoEvento, numeroEvento, bairroEvento, cidadeEvento, ufEvento, qtdVoluntarios, duracaoEvento, pontuacao } = props;
     const navigation = useNavigation();
 
     const showAlert = () =>
@@ -94,29 +94,19 @@ export default (props) => {
     // let data = new Date();
     // let dataFormatada = (data.getDate() + "/" + ((data.getMonth() + 1)) + "/" + (data.getFullYear()));
     // console.log(dataFormatada);
-    function adicionaZero(numero){
-        if (numero <= 9)
-            return "0" + numero;
-        else
-            return numero;
-    }
-    let dataAtual = new Date({DataEvento}); //29/01/2020
-    let dataAtualFormatada = (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
-    console.log(dataAtualFormatada);
 
     return (
         <Area>
             <InfoArea>
-                <TitleMessage > {NomeEvento} </TitleMessage>
+                <TitleMessage > {nomeEvento} </TitleMessage>
                 <TextArea>
                     <ImageEvent
                     source={require('../src/assets/evento.png')}
                     />
-                    <Description > {Descricao} </Description>
-                    <Infos >Endereço do evento: {EnderecoEvento} nº {NumeroEvento}, {BairroEvento}, {CidadeEvento} - {UfEvento} {'\n'}
-                    Duração do evento: {DuracaoEvento} horas {'\n'}
-                    Pontuação: {PontuacaoHora} pontos por hora {'\n'}
-                    Data do Evento: {DataEvento} </Infos>
+                    <Infos >Endereço do evento: {enderecoEvento} nº {numeroEvento}, {bairroEvento}, {cidadeEvento} - {ufEvento} {'\n'}
+                    Duração do evento: {duracaoEvento} horas {'\n'}
+                    Pontuação: {pontuacao} pontos por hora {'\n'}
+                    Data do Evento: {dataEvento} </Infos>
                 </TextArea>
                 <CadButton onPress={() => showAlert()}>
                     <CadButtonText> Cadastrar </CadButtonText>
