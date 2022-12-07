@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
-import api from '../../../services/api';
+// import api from '../../../services/api';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
 import CardOng from '../../../../components/CardOng';
-import CardMessagem from '../../../../components/CardMessagem';
 import { Button } from 'react-native';
 import * as animatable from 'react-native-animatable'
 import { MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
-import app from '../../../services/UsuarioServices';
+import api from '../../../services/UsuarioServices';
 
 export default function InicioOng() {
 
@@ -18,7 +17,7 @@ export default function InicioOng() {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            app.ExibirEventos().then(({ data }) => {
+            api.ExibirEventos().then(({ data }) => {
                 setEventos(data)
             });
         })
@@ -31,16 +30,19 @@ export default function InicioOng() {
                 Olá usuário!
             </TitleEventos>
             <ListArea>
-                {eventos.map(item => (
+              {eventos.map(item=> (
                     <View key={item.idEvento} >
-                        <CardMessagem nomeEvento={item.nomeEvento}
+                        <CardOng key={item.idEvento}
+                            nomeEvento={item.nomeEvento}
                             enderecoEvento={item.enderecoEvento}
                             numeroEvento={item.numeroEvento}
                             bairroEvento={item.bairroEvento}
                             cidadeEvento={item.cidadeEvento}
                             ufEvento={item.ufEvento}
+                            horarioEvento={item.horarioEvento}
                             duracaoEvento={item.duracaoEvento}
-                            pontuacao={item.pontuacao} />
+                            pontuacao={item.pontuacao}
+                            dataEvento={item.dataEvento} />
                     </View>
                 ))}
             </ListArea>
@@ -68,10 +70,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         paddingVertical: 10,
         width: '60%',
-       flexDirection:'column',
+        flexDirection: 'column',
         bottom: '20%',
         alignItems: 'center',
-        alignSelf:'center',
+        alignSelf: 'center',
         justifyContent: 'space-around',
 
 
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     card: {
-        marginTop:50,
+        marginTop: 50,
         marginBottom: 200
     },
 
@@ -108,17 +110,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E90FF',
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
-        height:110,
-        flexDirection:'column',
+        height: 110,
+        flexDirection: 'column',
         shadowColor: '#000',
-        elevation:25
+        elevation: 25
 
     },
 
     title: {
-        marginLeft:10,
+        marginLeft: 10,
         fontSize: 30,
-        fontWeight:'bold',
-        color:'#fff'
+        fontWeight: 'bold',
+        color: '#fff'
     }
 })

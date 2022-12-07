@@ -72,7 +72,6 @@ const Infos = styled.Text`
 
 export default (props) => {
     const { idOng, ongResponsavel, nomeEvento, dataEvento, horarioEvento, cepEvento, enderecoEvento, numeroEvento, bairroEvento, cidadeEvento, ufEvento, qtdVoluntarios, duracaoEvento, pontuacao } = props;
-    const navigation = useNavigation();
 
     const showAlert = () =>
         Alert.alert(
@@ -104,7 +103,8 @@ export default (props) => {
                     source={require('../src/assets/evento.png')}
                     />
                     <Infos >Endereço do evento: {enderecoEvento} nº {numeroEvento}, {bairroEvento}, {cidadeEvento} - {ufEvento} {'\n'}
-                    Duração do evento: {duracaoEvento} horas {'\n'}
+                    Horario do evento: {horarioEvento} {'\n'}
+                    Duração do evento: {duracaoEvento} {'\n'}
                     Pontuação: {pontuacao} pontos por hora {'\n'}
                     Data do Evento: {dataEvento} </Infos>
                 </TextArea>

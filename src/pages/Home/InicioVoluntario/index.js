@@ -16,7 +16,7 @@ export default function InicioVoluntario() {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            api.get('ExibirEventos').then(({ data }) => {
+            api.get('listar').then(({ data }) => {
                 setEventos(data)
             });
         })

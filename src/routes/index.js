@@ -17,7 +17,6 @@ import EntrarDoador from '../pages/Entrar/EntrarDoador';
 import EntrarVoluntario from '../pages/Entrar/EntrarVoluntario'
 import EntrarOng from '../pages/Entrar/EntrarOng'
 import VoluntarioEvento from '../pages/VoluntarioEvento';
-import Mapa from '../pages/Mapa';
 import CadastroVoluntario from '../pages/Cadastrar/CadastroVoluntario';
 import CadastroDoador from '../pages/Cadastrar/CadastroDoador';
 import CadastroOng from '../pages/Cadastrar/CadastroOng';
@@ -55,7 +54,7 @@ export function VoluntarioTab() {
                     ), headerShown: false
                 }}
             />
-          
+
             <Tab.Screen
                 name="Ajudar"
                 component={Ajudar}
@@ -254,12 +253,6 @@ export default function Routes() {
                     title: 'Cadastrar Novo Evento',
                     headerTitleAlign: 'center'
                 }} />
-
-            <Stack.Screen
-                name="Mapa"
-                component={Mapa}
-                options={{ headerShown: false }}
-            />
 
         </Stack.Navigator>
     )

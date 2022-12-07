@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet, Text, View, Image } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import { Button } from 'react-native';
-
+import { StyleSheet, Text, View, Image, Alert, Button } from "react-native";
 
 const Area = styled.TouchableOpacity`
     background-color: #1E90FF;
@@ -21,7 +18,6 @@ const InfoArea = styled.View`
 
 const TextArea = styled.View`
     justify-content: space-between;
-    border: 1px solid;
     margin-bottom: 10px;
     background-color: #FFFF;
 `;
@@ -62,7 +58,7 @@ const ImageEvent = styled.Image`
 `;
 
 const Infos = styled.Text`
-    font-size: 12px;
+    font-size: 15px;
     margin-bottom: 5px;
     margin-left: 5px;
     margin-right: 3px;
@@ -71,21 +67,23 @@ const Infos = styled.Text`
 `;
 
 export default (props) => {
-    const { NomeEvento, OngResponsavel, EnderecoEvento, NumeroEvento, BairroEvento, CidadeEvento, UfEvento, DuracaoEvento, PontuacaoHora } = props;
-    const navigation = useNavigation();
+    const { idOng, ongResponsavel, nomeEvento, dataEvento, horarioEvento, cepEvento, enderecoEvento, numeroEvento, bairroEvento, cidadeEvento, ufEvento, qtdVoluntarios, duracaoEvento, pontuacao } = props;
 
     return (
         <Area>
             <InfoArea>
-                <TitleMessage > {NomeEvento} </TitleMessage>
+                <TitleMessage > {nomeEvento} </TitleMessage>
                 <TextArea>
                     <ImageEvent
                     source={require('../src/assets/evento.png')}
                     />
-                    <Description > ONG Responsável: {OngResponsavel} </Description>
+                    <Infos >Endereço do evento: {enderecoEvento} nº {numeroEvento}, {bairroEvento}, {cidadeEvento} - {ufEvento} {'\n'}
+                    Horario do evento: {horarioEvento} {'\n'}
+                    Duração do evento: {duracaoEvento} {'\n'}
+                    Pontuação: {pontuacao} pontos por hora {'\n'}
+                    Data do Evento: {dataEvento} </Infos>
                 </TextArea>
             </InfoArea>
-            
         </Area>
     );
 }
