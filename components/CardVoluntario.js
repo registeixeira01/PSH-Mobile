@@ -82,13 +82,13 @@ export default (props) => {
                     text: "Cancelar",
                     onPress: () => Alert.alert("Inscrição cancelada", "Sua inscrição foi cancelada"),
                     style: "cancel",
-                  },
-                  {
+                },
+                {
                     text: "Confirmar",
-                    onPress: () => Alert.alert("Ótima escolha!" , "Obrigado por ser um voluntário, você faz parte da mudança!"),
+                    onPress: () => Alert.alert("Ótima escolha!", "Obrigado por ser um voluntário, você faz parte da mudança!"),
                     style: "cancel",
-                  }
-                ],
+                }
+            ],
         );
     // let data = new Date();
     // let dataFormatada = (data.getDate() + "/" + ((data.getMonth() + 1)) + "/" + (data.getFullYear()));
@@ -100,13 +100,15 @@ export default (props) => {
                 <TitleMessage > {nomeEvento} </TitleMessage>
                 <TextArea>
                     <ImageEvent
-                    source={require('../src/assets/evento.png')}
+                        source={require('../src/assets/evento.png')}
                     />
-                    <Infos >Endereço do evento: {enderecoEvento} nº {numeroEvento}, {bairroEvento}, {cidadeEvento} - {ufEvento} {'\n'}
-                    Horario do evento: {horarioEvento} {'\n'}
-                    Duração do evento: {duracaoEvento} {'\n'}
-                    Pontuação: {pontuacao} pontos por hora {'\n'}
-                    Data do Evento: {dataEvento} </Infos>
+                    <Infos >
+                        Ong Responsável: {ongResponsavel} {'\n'}
+                        Endereço do evento: {enderecoEvento} nº {numeroEvento}, {bairroEvento}, {cidadeEvento} - {ufEvento} {'\n'}
+                        Horario do evento: {horarioEvento} {'\n'}
+                        Duração do evento: {duracaoEvento} {'\n'}
+                        Pontuação: {pontuacao} pontos por hora {'\n'}
+                        Data do Evento: {dataEvento} </Infos>
                 </TextArea>
                 <CadButton onPress={() => showAlert()}>
                     <CadButtonText> Cadastrar </CadButtonText>

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'rea
 import api from '../../../services/api';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
-import CardOng from '../../../../components/CardOng';
+import CardVoluntario from '../../../../components/CardVoluntario';
 import { Button } from 'react-native';
 import * as animatable from 'react-native-animatable'
 import { MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
@@ -27,24 +27,32 @@ export default function InicioVoluntario() {
         <ScrollView >
             <View>
                 {/* header */}
-            <animatable.View style={styles.containerHeader}>
-            <TouchableOpacity
-                style={styles.buttonIcon}
-                onPress= { () => navigation.reset({
-                    routes: [{ name: "BemVindo" }]
-                })}>
-                <MaterialIcons name='exit-to-app' size={38} color='#000' shadowColor="#000" elevation={25} />
-            </TouchableOpacity>
-                <Text style={styles.title}>Inicio</Text>
-            </animatable.View>
-
-            {/* listas de cards */}
-                <ListArea  style={styles.card}>
-                     {eventos.map(item => (
-                        <View key={item.Codigo}>
-                            <CardOng  NomeEvento={item.NomeEvento}
-                                OngResponsavel={item.OngResponsavel} />
-
+                <animatable.View style={styles.containerHeader}>
+                    <TouchableOpacity
+                        style={styles.buttonIcon}
+                        onPress={() => navigation.reset({
+                            routes: [{ name: "BemVindo" }]
+                        })}>
+                        <MaterialIcons name='exit-to-app' size={38} color='#000' shadowColor="#000" elevation={25} />
+                    </TouchableOpacity>
+                    <Text style={styles.title}>Inicio</Text>
+                </animatable.View>
+                {/* listas de cards */}
+                <ListArea style={styles.card}>
+                    {eventos.map(item => (
+                        <View key={item.idEvento} >
+                            <CardVoluntario
+                                ongResponsavel={item.ongResponsavel}
+                                nomeEvento={item.nomeEvento}
+                                enderecoEvento={item.enderecoEvento}
+                                numeroEvento={item.numeroEvento}
+                                bairroEvento={item.bairroEvento}
+                                cidadeEvento={item.cidadeEvento}
+                                ufEvento={item.ufEvento}
+                                horarioEvento={item.horarioEvento}
+                                duracaoEvento={item.duracaoEvento}
+                                pontuacao={item.pontuacao}
+                                dataEvento={item.dataEvento} />
                         </View>
                     ))}
                 </ListArea>
@@ -74,10 +82,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         paddingVertical: 10,
         width: '60%',
-       flexDirection:'column',
+        flexDirection: 'column',
         bottom: '20%',
         alignItems: 'center',
-        alignSelf:'center',
+        alignSelf: 'center',
         justifyContent: 'space-around',
 
 
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     card: {
-        marginTop:50,
+        marginTop: 50,
         marginBottom: 200
     },
 
@@ -114,17 +122,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E90FF',
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
-        height:110,
-        flexDirection:'column',
+        height: 110,
+        flexDirection: 'column',
         shadowColor: '#000',
-        elevation:25
+        elevation: 25
 
     },
 
     title: {
-        marginLeft:10,
+        marginLeft: 10,
         fontSize: 30,
-        fontWeight:'bold',
-        color:'#fff'
+        fontWeight: 'bold',
+        color: '#fff'
     }
 })
