@@ -8,15 +8,15 @@ export default function CadEvento({ navigation }) {
     const [nomeOng] = useState("");
     const [nomeEvento, setNomeEvento] = useState("");
     const [dataEvento, setDataEvento] = useState("");
+    const [horarioEvento, setHorarioEvento] = useState("");
     const [cepEvento, setCepEvento] = useState("");
     const [enderecoEvento, setEnderecoEvento] = useState("");
     const [numeroEvento, setNumeroEvento] = useState("");
     const [bairroEvento, setBairroEvento] = useState("");
     const [cidadeEvento, setCidadeEvento] = useState("");
     const [ufEvento, setUfEvento] = useState("");
-    const [qtdVoluntatrios, setQtdVoluntatrios] = useState("");
+    const [qtdVoluntarios, setQtdVoluntatrios] = useState("");
     const [duracaoEvento, setDuracaoEvento] = useState("");
-    const [pontuacaoHora, setPontuacaoHora] = useState("");
     const [pontuacao, setPontuacao] = useState("");
 
     const cadastro = () => {
@@ -30,7 +30,7 @@ export default function CadEvento({ navigation }) {
             bairroEvento: bairroEvento,
             cidadeEvento: cidadeEvento,
             ufEvento: ufEvento,
-            qtdVoluntatrios: qtdVoluntatrios,
+            qtdVoluntarios: qtdVoluntarios,
             duracaoEvento: duracaoEvento,
             pontuacao: pontuacao
         }
@@ -56,13 +56,6 @@ export default function CadEvento({ navigation }) {
             <ScrollView >
                 <View style={styles.container}>
                     <TextInput style={styles.inputEvento}
-                        placeholder="Ong Responsavel"
-                        keyboardType='default'
-                        value={nomeOng} />
-                </View>
-
-                <View style={styles.container}>
-                    <TextInput style={styles.inputEvento}
                         placeholder="Nome do Evento"
                         onChangeText={text => setNomeEvento(text)}
                         value={nomeEvento} />
@@ -75,6 +68,11 @@ export default function CadEvento({ navigation }) {
                         keyboardType="numeric"
                         onChangeText={text => setDataEvento(text)}
                         value={dataEvento} />
+
+                    <TextInput style={styles.inputEvento}
+                        placeholder="Horário do evento"
+                        onChangeText={text => setHorarioEvento(text)}
+                        value={horarioEvento} />
 
                     <TextInput style={styles.inputEvento}
                         placeholder="CEP do Evento"
@@ -113,20 +111,12 @@ export default function CadEvento({ navigation }) {
                         placeholder="Quantidade de Voluntarios"
                         keyboardType="numeric"
                         onChangeText={text => setQtdVoluntatrios(text)}
-                        value={qtdVoluntatrios} />
+                        value={qtdVoluntarios} />
 
                     <TextInput style={styles.inputEvento}
                         placeholder="Duração do evento"
-                        keyboardType="numeric"
                         onChangeText={text => setDuracaoEvento(text)}
                         value={duracaoEvento} />
-
-
-                    <TextInput style={styles.inputEvento}
-                        placeholder="Pontuação por hora"
-                        keyboardType="numeric"
-                        onChangeText={text => setPontuacaoHora(text)}
-                        value={pontuacaoHora} />
 
                     <TextInput style={styles.inputEvento}
                         placeholder="Pontuação"

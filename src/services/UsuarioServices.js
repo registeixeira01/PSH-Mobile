@@ -3,7 +3,7 @@ import axios from "axios"
 
 import { Alert } from 'react-native'
 
-import Config, { getOng, navigate, deleteOng } from '../../util/Config'
+import Config, { getOng, navigate, deleteOng } from '../../util/config'
 
 class UsuarioService {
 

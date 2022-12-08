@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
 import CardOng from '../../../../components/CardOng';
 import api from '../../../services/UsuarioServices';
+import * as animatable from 'react-native-animatable'
+import { MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
 
 export default function InicioOng(props) {
 
@@ -22,9 +24,17 @@ export default function InicioOng(props) {
 
     return (
         <ScrollView >
-            <TitleEventos>
-                Seus Eventos
-            </TitleEventos>
+            <animatable.View style={styles.containerHeader}>
+            <TouchableOpacity
+                    style={styles.buttonIcon}
+                    onPress={() => navigation.reset({
+                        routes: [{ name: "BemVindo" }]
+                    })}>
+                    <MaterialIcons name='exit-to-app' size={38} color='#000' shadowColor="#000" elevation={25} />
+                </TouchableOpacity>
+                <Text style={styles.title}>Seus Eventos</Text>
+
+            </animatable.View>
             <ListArea>
                 {eventos.map(item => (
                     <View key={item.idEvento} >
@@ -96,8 +106,9 @@ const styles = StyleSheet.create({
     },
 
     buttonIcon: {
-        margin: 10,
+        marginTop: 20,
         alignItems: 'flex-end',
+
     },
 
     buttonText: {
@@ -106,7 +117,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     card: {
-        marginTop: 50,
+        marginTop: 10,
         marginBottom: 200
     },
 
@@ -123,6 +134,7 @@ const styles = StyleSheet.create({
 
     title: {
         marginLeft: 10,
+        marginTop: 5,
         fontSize: 30,
         fontWeight: 'bold',
         color: '#fff'

@@ -25,6 +25,7 @@ export default function TodosEventos() {
 
     return (
         <ScrollView >
+            <animatable.View style={styles.containerHeader}>
             <TouchableOpacity
                 style={styles.buttonIcon}
                 onPress={() => navigation.reset({
@@ -32,7 +33,8 @@ export default function TodosEventos() {
                 })}>
                 <MaterialIcons name='exit-to-app' size={38} color='#000' shadowColor="#000" elevation={25} />
             </TouchableOpacity>
-            <TitleEventos>Todos Eventos</TitleEventos>
+            <Text style={styles.title}>Todos os Eventos</Text>
+            </animatable.View>
             {/* listas de cards */}
             <ListArea>
                 {eventos.map(item => (
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
     },
 
     buttonIcon: {
-        margin: 10,
+        marginTop: 20,
         alignItems: 'flex-end',
     },
 
@@ -114,12 +116,19 @@ const styles = StyleSheet.create({
     },
 
     containerHeader: {
-        marginTop: 20,
-        marginBottom: 50,
+        backgroundColor: '#1E90FF',
+        borderBottomLeftRadius: 25,
+        borderBottomRightRadius: 25,
+        height: 110,
+        flexDirection: 'column',
+        shadowColor: '#000',
+        elevation: 25
+
     },
 
     title: {
         marginLeft: 10,
+        marginTop: 5,
         fontSize: 30,
         fontWeight: 'bold',
         color: '#fff'

@@ -72,11 +72,11 @@ export default function Loja() {
             [
                 {
                     text: "Cancelar",
-                    onPress: () => Alert.alert("Resgate cancelada", "Sua inscrição foi cancelada"),
+                    onPress: () => Alert.alert("Resgate cancelado", "Seu resgate foi cancelado"),
                     style: "cancel",
                 },
                 {
-                    text: "Confirmar",
+                    text: "Ok",
                     onPress: () => navigation.navigate('InicioVoluntario'),
                     style: "cancel",
                 }
@@ -101,18 +101,18 @@ export default function Loja() {
                 contentContainerStyle={{
                     flexDirection: 'row',
                     fexWrap: 'wrap',
-                    marginTop: 200
+                    marginTop: 100
                 }}
             >
 
                 <Area>
                     <InfoArea>
-                        <TitleMessage >Nike</TitleMessage>
+                        <TitleMessage>Nike</TitleMessage>
                         <TextArea>
-                            {/* <ImageEvent
-                                source={require('src/')}
-                            /> */}
-                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos nescessario: 1000</Text>
+                            <ImageEvent
+                                source={require('../../assets/nike.png')}
+                            />
+                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos necessarios: 1000</Text>
 
                         </TextArea>
                         <CadButton onPress={() => showAlert()}>
@@ -126,8 +126,10 @@ export default function Loja() {
                     <InfoArea>
                         <TitleMessage >Aliexpress</TitleMessage>
                         <TextArea>
-
-                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos nescessario: 1000</Text>
+                            <ImageEvent
+                                source={require('../../assets/aliexpress.png')}
+                            />
+                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos necessarios: 1000</Text>
 
                         </TextArea>
                         <CadButton onPress={() => showAlert()}>
@@ -141,8 +143,10 @@ export default function Loja() {
                     <InfoArea>
                         <TitleMessage >Burguer King</TitleMessage>
                         <TextArea>
-
-                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos nescessario: 1000</Text>
+                            <ImageEvent
+                                source={require('../../assets/burger-king.png')}
+                            />
+                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos necessarios: 1000</Text>
 
                         </TextArea>
                         <CadButton onPress={() => showAlert()}>
@@ -156,8 +160,10 @@ export default function Loja() {
                     <InfoArea>
                         <TitleMessage >Shopee</TitleMessage>
                         <TextArea>
-
-                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos nescessario: 1000</Text>
+                        <ImageEvent
+                                source={require('../../assets/shopee.png')}
+                            />
+                            <Text style={{ margin: 10, marginRight: 150 }}>Pontos necessarios: 1000</Text>
 
                         </TextArea>
                         <CadButton onPress={() => showAlert()}>

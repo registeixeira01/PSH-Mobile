@@ -31,13 +31,6 @@ export default function BemVindo() {
                 <Text style={styles.text}>Selecione como você vai ajudar:</Text>
 
                 <TouchableOpacity
-                style={styles.button}
-                onPress={ () => navigation.navigate('EntrarDoador')}
-                >
-                    <Text style={styles.buttonText}>Doador</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
                 style={styles.buttonDois}
                 onPress={ () => navigation.navigate('EntrarVoluntario')}
                 >
@@ -100,7 +93,7 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         justifyContent: 'space-around',
         marginTop:5
-        
+
     },
     buttonDois: {
         position: 'absolute',
@@ -109,12 +102,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         width: '50%',
        flexDirection:'column',
-        bottom: '35%',
+        bottom: '45%',
         alignItems: 'center',
         alignSelf:'center',
         justifyContent: 'space-around',
         marginTop:5
-        
+
     },
     buttonTres: {
         position: 'absolute',
@@ -123,20 +116,20 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         width: '50%',
        flexDirection:'column',
-        bottom: '20%',
+        bottom: '30%',
         alignItems: 'center',
         alignSelf:'center',
         justifyContent: 'space-around',
         marginTop:5
-        
+
     },
-    
+
 
     buttonText: {
         fontSize: 18,
         color: '#fff',
         fontWeight: 'bold'
     },
-    
+
 })
 

@@ -13,17 +13,6 @@ export default function VoluntarioEvento() {
     const [nome, setNome] = useState("");
     const [data, setData] = useState([]);
 
-    const showAlert = () =>
-        Alert.alert(
-            "Ótima escolha!",
-            "\nObrigado por ser um voluntário, você faz parte da mudança! ",
-            [
-                {
-                    text: "OK",
-                    onPress: () => navigation.navigate('InicioVoluntario'),
-                },
-            ],
-        );
     const cadastrarEvento = () =>
         {
             app.CadastrarVoluntarioEventos().then((response) => {
@@ -33,7 +22,7 @@ export default function VoluntarioEvento() {
                     [
                         {
                             text: "OK",
-                            onPress: () => navigation.navigate('InicioVoluntario'),
+                            onPress: () => navigation.navigate('Loja'),
                         },
                     ],
                 );
