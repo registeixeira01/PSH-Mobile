@@ -71,23 +71,6 @@ export default (props) => {
     const { idEvento, idOng, ongResponsavel, nomeEvento, dataEvento, horarioEvento, cepEvento, enderecoEvento, numeroEvento, bairroEvento, cidadeEvento, ufEvento, qtdVoluntarios, duracaoEvento, pontuacao } = props;
     const navigation = useNavigation();
 
-    const showAlert = () =>
-        Alert.alert(
-            "Atenção",
-            "Você confirma sua inscrição neste evento?",
-            [
-                {
-                    text: "Cancelar",
-                    onPress: () => Alert.alert("Inscrição cancelada", "Sua inscrição foi cancelada"),
-                    style: "cancel",
-                },
-                {
-                    text: "Confirmar",
-                    onPress: () => navigation.navigate('Voluntario'),
-                    style: "cancel",
-                }
-            ],
-        );
     // let data = new Date();
     // let dataFormatada = (data.getDate() + "/" + ((data.getMonth() + 1)) + "/" + (data.getFullYear()));
     // console.log(dataFormatada);
@@ -95,7 +78,7 @@ export default (props) => {
     return (
         <Area>
             <InfoArea>
-                <TitleMessage > {nomeEvento} {'\n'}Cod. Evento: {idEvento} </TitleMessage>
+                <TitleMessage >{nomeEvento} {'\n'}Cod. Evento: {idEvento} </TitleMessage>
                 <TextArea>
                     <ImageEvent
                         source={require('../src/assets/evento.png')}
@@ -108,9 +91,6 @@ export default (props) => {
                         Pontuação: {pontuacao} pontos por hora {'\n'}
                         Data do Evento: {dataEvento} </Infos>
                 </TextArea>
-                <CadButton onPress={() => showAlert()}>
-                    <CadButtonText> Cadastrar </CadButtonText>
-                </CadButton>
             </InfoArea>
         </Area>
     );

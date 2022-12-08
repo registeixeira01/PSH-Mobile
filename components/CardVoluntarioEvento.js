@@ -68,7 +68,7 @@ const Infos = styled.Text`
 `;
 
 export default (props) => {
-    const { idEvento, idOng, ongResponsavel, nomeEvento, dataEvento, horarioEvento, cepEvento, enderecoEvento, numeroEvento, bairroEvento, cidadeEvento, ufEvento, qtdVoluntarios, duracaoEvento, pontuacao } = props;
+    const { idEvento, nomeEvento, dataEvento} = props;
     const [evento, setEvento] = useState ("");
 
     return (
@@ -79,11 +79,7 @@ export default (props) => {
                     <ImageEvent
                     source={require('../src/assets/evento.png')}
                     />
-                    <Infos >Endereço do evento: {enderecoEvento} nº {numeroEvento}, {bairroEvento}, {cidadeEvento} - {ufEvento} {'\n'}
-                    Horario do evento: {horarioEvento} {'\n'}
-                    Duração do evento: {duracaoEvento} {'\n'}
-                    Pontuação: {pontuacao} pontos por hora {'\n'}
-                    Data do Evento: {dataEvento} </Infos>
+                    <Infos >Data do Evento: {dataEvento} </Infos>
                 </TextArea>
             </InfoArea>
         </Area>

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import app from '../../services/UsuarioServices';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
-import CardOng from '../../../../components/CardOng';
-import api from '../../../services/UsuarioServices';
+import CardOng from '../../../components/CardOngDois';
+import { Button } from 'react-native';
+import * as animatable from 'react-native-animatable'
+import { MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
 
-export default function InicioOng(props) {
+export default function TodosEventos() {
 
     const [eventos, setEventos] = useState([]);
     const navigation = useNavigation();
@@ -13,7 +16,7 @@ export default function InicioOng(props) {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            api.ListarEventosOngs().then(({ data }) => {
+            app.ExibirEventos().then(({ data }) => {
                 setEventos(data)
             });
         })
@@ -22,14 +25,21 @@ export default function InicioOng(props) {
 
     return (
         <ScrollView >
-            <TitleEventos>
-                Seus Eventos
-            </TitleEventos>
+            <TouchableOpacity
+                style={styles.buttonIcon}
+                onPress={() => navigation.reset({
+                    routes: [{ name: "BemVindo" }]
+                })}>
+                <MaterialIcons name='exit-to-app' size={38} color='#000' shadowColor="#000" elevation={25} />
+            </TouchableOpacity>
+            <TitleEventos>Todos Eventos</TitleEventos>
+            {/* listas de cards */}
             <ListArea>
                 {eventos.map(item => (
                     <View key={item.idEvento} >
                         <CardOng
                             idEvento={item.idEvento}
+                            ongResponsavel={item.ongResponsavel}
                             nomeEvento={item.nomeEvento}
                             enderecoEvento={item.enderecoEvento}
                             numeroEvento={item.numeroEvento}
@@ -43,16 +53,9 @@ export default function InicioOng(props) {
                     </View>
                 ))}
             </ListArea>
-
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('CadEvento')}>
-                <Text style={styles.buttonText}>Cadastrar novo evento</Text>
-            </TouchableOpacity>
-
         </ScrollView>
-    )
 
+    )
 }
 
 const styles = StyleSheet.create({
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         width: '60%',
         flexDirection: 'column',
-        bottom: '0.2%',
+        bottom: '20%',
         alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'space-around',
@@ -111,14 +114,8 @@ const styles = StyleSheet.create({
     },
 
     containerHeader: {
-        backgroundColor: '#1E90FF',
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        height: 110,
-        flexDirection: 'column',
-        shadowColor: '#000',
-        elevation: 25
-
+        marginTop: 20,
+        marginBottom: 50,
     },
 
     title: {

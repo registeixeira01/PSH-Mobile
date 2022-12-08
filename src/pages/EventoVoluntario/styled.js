@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 
 export const ListArea = styled.View`
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 `;
 
 export const TitleEventos = styled.Text`

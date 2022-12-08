@@ -19,46 +19,35 @@ export default function CadEvento({ navigation }) {
     const [pontuacaoHora, setPontuacaoHora] = useState("");
     const [pontuacao, setPontuacao] = useState("");
 
-    function cadastro() {
-        try {
-            const response = app.post('cadastrarEvento',
-                {
-                    NomeEvento: nomeEvento,
-                    DataEvento: dataEvento,
-                    CepEvento: cepEvento,
-                    EnderecoEvento: enderecoEvento,
-                    NumeroEvento: numeroEvento,
-                    BairroEvento: bairroEvento,
-                    CidadeEvento: cidadeEvento,
-                    UfEvento: ufEvento,
-                    QtdeVoluntatrios: qtdVoluntatrios,
-                    DuracaoEvento: duracaoEvento,
-                    PontuacaoHora: pontuacaoHora,
-                    Pontuacao: pontuacao
-                });
-
-            setNomeEvento(""),
-                setDataEvento(""),
-                setCepEvento(""),
-                setEnderecoEvento(""),
-                setNumeroEvento(""),
-                setBairroEvento(""),
-                setCidadeEvento(""),
-                setUfEvento(""),
-                setQtdVoluntatrios(""),
-                setDuracaoEvento(""),
-                setPontuacaoHora(""),
-                setPontuacao("");
-
-            Alert.alert(
-                "Informação",
-                "Evento criado com sucesso!")
-            navigation.goBack();
-
-        } catch (error) {
-
+    const cadastro = () => {
+        let data = {
+            nomeEvento: nomeEvento,
+            dataEvento: dataEvento,
+            horarioEvento: horarioEvento,
+            cepEvento: cepEvento,
+            enderecoEvento: enderecoEvento,
+            numeroEvento: numeroEvento,
+            bairroEvento: bairroEvento,
+            cidadeEvento: cidadeEvento,
+            ufEvento: ufEvento,
+            qtdVoluntatrios: qtdVoluntatrios,
+            duracaoEvento: duracaoEvento,
+            pontuacao: pontuacao
         }
+
+        app.CadastrarEventos(data)
+            .then((response) => {
+                Alert.alert(
+                    "Informação",
+                    "Evento criado com sucesso!")
+                navigation.goBack();
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
     }
+
 
     return (
         <View style={styles.container}>

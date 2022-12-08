@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
-import CardOng from '../../../../components/CardOng';
-import api from '../../../services/UsuarioServices';
+import CardVoluntario from '../../../components/CardVoluntarioEvento';
+import api from '../../services/UsuarioServices';
 
-export default function InicioOng(props) {
+export default function EventoVoluntario(props) {
 
     const [eventos, setEventos] = useState([]);
     const navigation = useNavigation();
@@ -13,7 +13,7 @@ export default function InicioOng(props) {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            api.ListarEventosOngs().then(({ data }) => {
+            api.ListarEventosVoluntarios().then(({ data }) => {
                 setEventos(data)
             });
         })
@@ -28,28 +28,13 @@ export default function InicioOng(props) {
             <ListArea>
                 {eventos.map(item => (
                     <View key={item.idEvento} >
-                        <CardOng
+                        <CardVoluntario
                             idEvento={item.idEvento}
                             nomeEvento={item.nomeEvento}
-                            enderecoEvento={item.enderecoEvento}
-                            numeroEvento={item.numeroEvento}
-                            bairroEvento={item.bairroEvento}
-                            cidadeEvento={item.cidadeEvento}
-                            ufEvento={item.ufEvento}
-                            horarioEvento={item.horarioEvento}
-                            duracaoEvento={item.duracaoEvento}
-                            pontuacao={item.pontuacao}
                             dataEvento={item.dataEvento} />
                     </View>
                 ))}
             </ListArea>
-
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('CadEvento')}>
-                <Text style={styles.buttonText}>Cadastrar novo evento</Text>
-            </TouchableOpacity>
-
         </ScrollView>
     )
 

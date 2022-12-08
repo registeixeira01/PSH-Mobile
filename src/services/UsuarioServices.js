@@ -3,7 +3,7 @@ import axios from "axios"
 
 import { Alert } from 'react-native'
 
-import { getOng, navigate, deleteOng } from '../../util/config'
+import Config, { getOng, navigate, deleteOng } from '../../util/config'
 
 // const api = axios.create({
 //     baseURL: "http://192.168.1.3:3000/",
@@ -69,14 +69,15 @@ class UsuarioService {
 
     async loginDoador(data) {
         return axios({
-            url: "http://192.168.1.3:3000/Doadores/loginDoador",
+            url: Config.API_URL + "Doadores/loginDoador",
             method: "POST",
-            timeout: 500,
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
                 Accept: 'application/json'
             }
         }).then((response) => {
+            AsyncStorage.setItem("TOKEN", response.data.token)
             return Promise.resolve(response)
         }).catch((error) => {
             return Promise.reject(error)
@@ -85,9 +86,9 @@ class UsuarioService {
 
     async cadastroDoador(data) {
         return axios({
-            url: "http://192.168.1.3:3000/doadores/cadastrarDoador",
+            url: Config.API_URL + "doadores/cadastrarDoador",
             method: "POST",
-            timeout: 500,
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
                 Accept: 'application/json'
@@ -105,7 +106,24 @@ class UsuarioService {
 
     async loginVolutario(data) {
         return axios({
-            url: "http://192.168.1.3:3000/voluntarios/loginVoluntario",
+            url: Config.API_URL + "voluntarios/loginVoluntario",
+            method: "POST",
+            timeout: Config.TIMEOUT_REQUEST,
+            data: data,
+            headers: {
+                Accept: 'application/json',
+            }
+        }).then((response) => {
+            AsyncStorage.setItem("TOKEN", response.data.token)
+            return Promise.resolve(response)
+        }).catch((error) => {
+            return Promise.reject(error)
+        })
+    }
+
+    async cadastroVoluntario(data) {
+        return axios({
+            url: Config.API_URL + "voluntarios/cadastrarVoluntario",
             method: "POST",
             timeout: 500,
             data: data,
@@ -119,13 +137,33 @@ class UsuarioService {
         })
     }
 
-    async cadastroVoluntario(data) {
+    async ListarEventosVoluntarios(data) {
+        let token = await AsyncStorage.getItem("TOKEN")
         return axios({
-            url: "http://192.168.1.3:3000/voluntarios/cadastrarVoluntario",
-            method: "POST",
-            timeout: 500,
+            url: Config.API_URL + "voluntarios/voluntariosListar",
+            method: "GET",
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            }
+        }).then((response) => {
+            return Promise.resolve(response)
+        }).catch((error) => {
+            return Promise.reject(error)
+        })
+    }
+
+    async CadastrarVoluntarioEventos(data) {
+        let token = await AsyncStorage.getItem("TOKEN")
+        return axios({
+            url: Config.API_URL + "voluntarios/cadastrarVoluntarioEvento/4",
+            method: "POST",
+            timeout: Config.TIMEOUT_REQUEST,
+            data: data,
+            headers: {
+                Authorization: 'Bearer ' + token,
                 Accept: 'application/json'
             }
         }).then((response) => {
@@ -137,9 +175,9 @@ class UsuarioService {
 
     async ExibirEventos(data) {
         return axios({
-            url: "http://192.168.1.3:3000/eventos/listar",
+            url: Config.API_URL + "eventos/listar",
             method: "GET",
-            timeout: 500,
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
                 Accept: 'application/json'
@@ -152,12 +190,14 @@ class UsuarioService {
     }
 
     async CadastrarEventos(data) {
+        let token = await AsyncStorage.getItem("TOKEN")
         return axios({
-            url: "http://192.168.1.3:3000/eventos/cadastrarEvento",
+            url: Config.API_URL + "eventos/cadastrarEvento",
             method: "POST",
-            timeout: 500,
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
+                Authorization: 'Bearer ' + token,
                 Accept: 'application/json'
             }
         }).then((response) => {
@@ -175,15 +215,14 @@ class UsuarioService {
 
     async loginOng(data) {
         return axios({
-            url: "http://192.168.1.3:3000/Ongs/loginOng",
+            url: Config.API_URL + "Ongs/loginOng",
             method: "POST",
-            timeout: 5000,
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
                 Accept: 'application/json'
             }
         }).then((response) => {
-            console.log(response.data.token)
             AsyncStorage.setItem("TOKEN", response.data.token)
             return Promise.resolve(response)
         }).catch((error) => {
@@ -193,9 +232,9 @@ class UsuarioService {
 
     async cadastroOng(data) {
         return axios({
-            url: "http://192.168.1.3:3000/Ongs/cadastrarOng",
+            url: Config.API_URL + "Ongs/cadastrarOng",
             method: "POST",
-            timeout: 500,
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
                 Accept: 'application/json'
@@ -210,9 +249,9 @@ class UsuarioService {
     async ListarEventosOngs(data) {
         let token = await AsyncStorage.getItem("TOKEN")
         return axios({
-            url: "http://192.168.1.3:3000/ongs/listar",
+            url: Config.API_URL + "ongs/listar",
             method: "GET",
-            timeout: 5000,
+            timeout: Config.TIMEOUT_REQUEST,
             data: data,
             headers: {
                 Authorization: 'Bearer ' + token,
@@ -224,33 +263,6 @@ class UsuarioService {
             return Promise.reject(error)
         })
     }
-
-
-
-
-
-
-    // Criar Evento
-
-    async CriarEventos(data) {
-        return axios({
-            url: "http://192.168.1.3:3000/Eventos/cadastrarEvento",
-            method: "POST",
-            timeout: 500,
-            data: data,
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
-            }
-        }).then((response) => {
-            return Promise.resolve(response)
-        }).catch((error) => {
-            return Promise.reject(error)
-        })
-    }
-
-
-
 }
 
 const api = new UsuarioService()

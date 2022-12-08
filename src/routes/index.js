@@ -10,8 +10,8 @@ import InicioVoluntario from '../pages/Home/InicioVoluntario'
 import InicioDoador from '../pages/Home/InicioDoador'
 import InicioOng from '../pages/Home/InicioOng'
 import CadEvento from '../pages/CadEvento'
-import Ajudar from '../pages/Ajudar'
-import Perfil from '../pages/Perfil'
+import EventoVoluntario from '../pages/EventoVoluntario'
+import TodosEventos from '../pages/TodosEventos'
 import BemVindo from '../pages/BemVindo'
 import EntrarDoador from '../pages/Entrar/EntrarDoador';
 import EntrarVoluntario from '../pages/Entrar/EntrarVoluntario'
@@ -20,8 +20,7 @@ import VoluntarioEvento from '../pages/VoluntarioEvento';
 import CadastroVoluntario from '../pages/Cadastrar/CadastroVoluntario';
 import CadastroDoador from '../pages/Cadastrar/CadastroDoador';
 import CadastroOng from '../pages/Cadastrar/CadastroOng';
-import CardsEventos from '../pages/CardsEventos';
-
+import EventosVoluntarios from '../pages/EventoVoluntario';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,20 +55,11 @@ export function VoluntarioTab() {
             />
 
             <Tab.Screen
-                name="Ajudar"
-                component={Ajudar}
+                name="Eventos"
+                component={EventoVoluntario}
                 options={{
                     tabBarIcon: ({ size, color }) => (
-                        <Entypo name="help-with-circle" size={size} color={color} />
-                    ), headerShown: false
-                }}
-            />
-            <Tab.Screen
-                name="Perfil"
-                component={Perfil}
-                options={{
-                    tabBarIcon: ({ size, color }) => (
-                        <Feather name="user" size={size} color={color} />
+                        <MaterialIcons name="event-available" size={24} color="black" />
                     ), headerShown: false
                 }}
             />
@@ -106,22 +96,12 @@ export function DoadorTab() {
                     ), headerShown: false
                 }}
             />
-
             <Tab.Screen
-                name="Ajudar"
-                component={Ajudar}
+                name="Eventos"
+                component={TodosEventos}
                 options={{
                     tabBarIcon: ({ size, color }) => (
-                        <Entypo name="help-with-circle" size={size} color={color} />
-                    ), headerShown: false
-                }}
-            />
-            <Tab.Screen
-                name="Perfil"
-                component={Perfil}
-                options={{
-                    tabBarIcon: ({ size, color }) => (
-                        <Feather name="user" size={size} color={color} />
+                        <MaterialIcons name="event-available" size={24} color="black" />
                     ), headerShown: false
                 }}
             />
@@ -163,18 +143,18 @@ export function OngTab() {
                 component={CadEvento}
                 options={{
                     tabBarIcon: ({ size, color }) => (
-                        <MaterialIcons name="event" size={size} color={color} />
+                        <MaterialIcons name="event" size={size} color="black" />
                     ), title: 'Novo Evento',
                     headerTitleAlign: 'center'
                 }}
             />
 
             <Tab.Screen
-                name="Perfil"
-                component={Perfil}
+                name="Eventos"
+                component={TodosEventos}
                 options={{
                     tabBarIcon: ({ size, color }) => (
-                        <Feather name="user" size={size} color={color} />
+                        <MaterialIcons name="event-available" size={24} color="black" />
                     ), headerShown: false
                 }}
             />
@@ -233,12 +213,6 @@ export default function Routes() {
                 name="InicioOng"
                 component={OngTab}
                 options={{ headerShown: false }} />
-
-            <Stack.Screen
-                name="CardsEventos"
-                component={CardsEventos}
-                options={{ headerShown: false }}
-            />
 
             <Stack.Screen
                 name="Voluntario"

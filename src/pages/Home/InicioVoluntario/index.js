@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
-import api from '../../../services/api';
+import app from '../../../services/UsuarioServices';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
 import CardVoluntario from '../../../../components/CardVoluntario';
@@ -16,7 +16,7 @@ export default function InicioVoluntario() {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            api.get('listar').then(({ data }) => {
+            app.ExibirEventos().then(({ data }) => {
                 setEventos(data)
             });
         })
@@ -42,6 +42,7 @@ export default function InicioVoluntario() {
                     {eventos.map(item => (
                         <View key={item.idEvento} >
                             <CardVoluntario
+                                idEvento={item.idEvento}
                                 ongResponsavel={item.ongResponsavel}
                                 nomeEvento={item.nomeEvento}
                                 enderecoEvento={item.enderecoEvento}

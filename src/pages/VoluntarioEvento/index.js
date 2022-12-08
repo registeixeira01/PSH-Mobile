@@ -4,12 +4,13 @@ import React, { useEffect, useState } from 'react';
 import SelectList from 'react-native-dropdown-select-list'
 import { useNavigation } from '@react-navigation/native'
 
-import api from '../../services/api';
+import app from '../../services/UsuarioServices';
 
 export default function VoluntarioEvento() {
 
     const navigation = useNavigation();
     const [selected, setSelected] = useState("");
+    const [nome, setNome] = useState("");
     const [data, setData] = useState([]);
 
     const showAlert = () =>
@@ -19,18 +20,37 @@ export default function VoluntarioEvento() {
             [
                 {
                     text: "OK",
-                    onPress: () => navigation.navigate('Usuario'),
+                    onPress: () => navigation.navigate('InicioVoluntario'),
                 },
             ],
         );
+    const cadastrarEvento = () =>
+        {
+            app.CadastrarVoluntarioEventos().then((response) => {
+                Alert.alert(
+                    "Ótima escolha!",
+                    "\nObrigado por ser um voluntário, você faz parte da mudança! ",
+                    [
+                        {
+                            text: "OK",
+                            onPress: () => navigation.navigate('InicioVoluntario'),
+                        },
+                    ],
+                );
+            })
+            .catch((error) => {
+                console.log(error)
+                Alert.alert("Erro")
+            })
+        }
 
     useEffect(() => {
         //Get Values from database
-        api.get('List')
+        app.ExibirEventos()
             .then((response) => {
                 // Store Values in Temporary Array
                 let newArray = response.data.map((item) => {
-                    return { key: item.Codigo, value: item.NomeEvento }
+                    return { key: item.idEvento, value: item.nomeEvento }
                 })
                 //Set Data Variable
                 setData(newArray)
@@ -57,11 +77,8 @@ export default function VoluntarioEvento() {
                 placeholder="Selecione um evento"
                 maxHeight={150}
             />
-            <TextInput style={styles.inputEvento}
-                placeholder="Data do evento"
-            />
 
-            <Button style={styles.btnSalvar} onPress={() => showAlert()} title={"Salvar"} />
+            <Button style={styles.btnSalvar} onPress={() => cadastrarEvento()} title={"Salvar"} />
         </View>
 
     )
