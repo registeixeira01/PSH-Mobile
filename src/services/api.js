@@ -1,7 +1,8 @@
 import axios from 'axios'
+import Config from '../../util/Config';
 
 const api = axios.create({
-    baseURL: "http://192.168.1.3:3000/eventos/"
+    baseURL: Config.API_URL + "Eventos/"
 });
 
 export default api;

@@ -3,68 +3,8 @@ import axios from "axios"
 
 import { Alert } from 'react-native'
 
-import Config, { getOng, navigate, deleteOng } from '../../util/config'
+import Config, { getOng, navigate, deleteOng } from '../../util/Config'
 
-// const api = axios.create({
-//     baseURL: "http://192.168.1.3:3000/",
-//     headers: {
-//         'Content-Type': 'application/json',
-//         Accept: 'application/json'
-//     }
-// });
-
-
-// api.interceptors.response.use(
-//     response => {
-
-//         // Do something with response data
-
-//         return response
-//     },
-//     error => {
-
-//         // Do something with response error
-
-//         // You can even test for a response code
-//         // and try a new request before rejecting the promise
-
-//         if (
-//             error.request._hasError === true &&
-//             error.request._response.includes('connect')
-//         ) {
-//             Alert.alert(
-//                 'Aviso',
-//                 'Não foi possível conectar aos nossos servidores, sem conexão a internet',
-//                 [{ text: 'OK' }],
-//                 { cancelable: false },
-//             )
-//         }
-
-//         return Promise.reject(error)
-//     },
-// )
-
-// api.interceptors.request.use(
-//     config => {
-//         return getOng()
-//             .then(data => {
-//                 data = JSON.parse(data)
-//                 if (data && data.token)
-//                     config.headers.Authorization = `Bearer ${data.token}`
-//                 return Promise.resolve(config)
-//             })
-//             .catch(error => {
-//                 console.log(error)
-//                 return Promise.resolve(config)
-//             })
-//     },
-//     error => {
-//         return Promise.reject(error)
-//     },
-// )
-
-
-// export default api;
 class UsuarioService {
 
     async loginDoador(data) {
@@ -86,7 +26,7 @@ class UsuarioService {
 
     async cadastroDoador(data) {
         return axios({
-            url: Config.API_URL + "doadores/cadastrarDoador",
+            url: Config.API_URL + "Doadores/cadastrarDoador",
             method: "POST",
             timeout: Config.TIMEOUT_REQUEST,
             data: data,
@@ -106,7 +46,7 @@ class UsuarioService {
 
     async loginVolutario(data) {
         return axios({
-            url: Config.API_URL + "voluntarios/loginVoluntario",
+            url: Config.API_URL + "Voluntarios/loginVoluntario",
             method: "POST",
             timeout: Config.TIMEOUT_REQUEST,
             data: data,
@@ -123,7 +63,7 @@ class UsuarioService {
 
     async cadastroVoluntario(data) {
         return axios({
-            url: Config.API_URL + "voluntarios/cadastrarVoluntario",
+            url: Config.API_URL + "Voluntarios/cadastrarVoluntario",
             method: "POST",
             timeout: 500,
             data: data,
@@ -140,7 +80,7 @@ class UsuarioService {
     async ListarEventosVoluntarios(data) {
         let token = await AsyncStorage.getItem("TOKEN")
         return axios({
-            url: Config.API_URL + "voluntarios/voluntariosListar",
+            url: Config.API_URL + "Voluntarios/voluntariosListar",
             method: "GET",
             timeout: Config.TIMEOUT_REQUEST,
             data: data,
@@ -158,7 +98,7 @@ class UsuarioService {
     async CadastrarVoluntarioEventos(data) {
         let token = await AsyncStorage.getItem("TOKEN")
         return axios({
-            url: Config.API_URL + "voluntarios/cadastrarVoluntarioEvento/4",
+            url: Config.API_URL + "Voluntarios/cadastrarVoluntarioEvento/3",
             method: "POST",
             timeout: Config.TIMEOUT_REQUEST,
             data: data,
@@ -175,7 +115,7 @@ class UsuarioService {
 
     async ExibirEventos(data) {
         return axios({
-            url: Config.API_URL + "eventos/listar",
+            url: Config.API_URL + "Eventos/listar",
             method: "GET",
             timeout: Config.TIMEOUT_REQUEST,
             data: data,
@@ -192,7 +132,7 @@ class UsuarioService {
     async CadastrarEventos(data) {
         let token = await AsyncStorage.getItem("TOKEN")
         return axios({
-            url: Config.API_URL + "eventos/cadastrarEvento",
+            url: Config.API_URL + "Eventos/cadastrarEvento",
             method: "POST",
             timeout: Config.TIMEOUT_REQUEST,
             data: data,
@@ -249,7 +189,7 @@ class UsuarioService {
     async ListarEventosOngs(data) {
         let token = await AsyncStorage.getItem("TOKEN")
         return axios({
-            url: Config.API_URL + "ongs/listar",
+            url: Config.API_URL + "Ongs/listar",
             method: "GET",
             timeout: Config.TIMEOUT_REQUEST,
             data: data,

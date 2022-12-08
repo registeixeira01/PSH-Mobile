@@ -21,6 +21,7 @@ import CadastroVoluntario from '../pages/Cadastrar/CadastroVoluntario';
 import CadastroDoador from '../pages/Cadastrar/CadastroDoador';
 import CadastroOng from '../pages/Cadastrar/CadastroOng';
 import EventosVoluntarios from '../pages/EventoVoluntario';
+import Loja from '../pages/Loja';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,6 +51,16 @@ export function VoluntarioTab() {
                 options={{
                     tabBarIcon: ({ size, color }) => (
                         <Entypo name="home" size={size} color={color} />
+                    ), headerShown: false
+                }}
+            />
+
+            <Tab.Screen
+                name="Loja"
+                component={Loja}
+                options={{
+                    tabBarIcon: ({ size, color }) => (
+                        <Feather name="star" size={size} color={color} />
                     ), headerShown: false
                 }}
             />
