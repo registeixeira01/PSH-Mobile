@@ -50,12 +50,6 @@ export default function InicioVoluntario() {
                 </ListArea>
             </View>
 
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('CadEvento')}>
-                <Text style={styles.buttonText}>Cadastrar novo evento</Text>
-            </TouchableOpacity>
-
         </ScrollView>
 
     )

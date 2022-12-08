@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
-// import api from '../../../services/api';
 import { useNavigation } from '@react-navigation/native'
 import { ListArea, TitleEventos } from './styled';
 import CardOng from '../../../../components/CardOng';
-import { Button } from 'react-native';
-import * as animatable from 'react-native-animatable'
-import { MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
 import api from '../../../services/UsuarioServices';
 
-export default function InicioOng() {
+export default function InicioOng(props) {
 
     const [eventos, setEventos] = useState([]);
     const navigation = useNavigation();
@@ -17,7 +13,7 @@ export default function InicioOng() {
     useEffect(() => {
 
         const subs = navigation.addListener('focus', () => {
-            api.ExibirEventos().then(({ data }) => {
+            api.ListarEventosOngs().then(({ data }) => {
                 setEventos(data)
             });
         })
@@ -27,13 +23,12 @@ export default function InicioOng() {
     return (
         <ScrollView >
             <TitleEventos>
-                Olá usuário!
+                Seus Eventos
             </TitleEventos>
             <ListArea>
               {eventos.map(item=> (
                     <View key={item.idEvento} >
-                        <CardOng key={item.idEvento}
-                            nomeEvento={item.nomeEvento}
+                        <CardOng nomeEvento={item.nomeEvento}
                             enderecoEvento={item.enderecoEvento}
                             numeroEvento={item.numeroEvento}
                             bairroEvento={item.bairroEvento}
@@ -46,6 +41,13 @@ export default function InicioOng() {
                     </View>
                 ))}
             </ListArea>
+
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('CadEvento')}>
+                <Text style={styles.buttonText}>Cadastrar novo evento</Text>
+            </TouchableOpacity>
+
         </ScrollView>
     )
 
@@ -70,10 +72,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         paddingVertical: 10,
         width: '60%',
-        flexDirection: 'column',
-        bottom: '20%',
+        flexDirection:'column',
+        bottom: '0.2%',
         alignItems: 'center',
-        alignSelf: 'center',
+        alignSelf:'center',
         justifyContent: 'space-around',
 
 

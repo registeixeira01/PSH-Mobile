@@ -83,6 +83,9 @@ export default (props) => {
                     Pontuação: {pontuacao} pontos por hora {'\n'}
                     Data do Evento: {dataEvento} </Infos>
                 </TextArea>
+                <CadButton onPress={() => showAlert()}>
+                    <CadButtonText> Ver Voluntarios </CadButtonText>
+                </CadButton>
             </InfoArea>
         </Area>
     );

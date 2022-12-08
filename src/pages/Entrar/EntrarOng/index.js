@@ -10,14 +10,17 @@ import {
     ScroolView
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native'
 import * as animatable from 'react-native-animatable'
 import app from '../../../../src/services/UsuarioServices';
+
 
 export default function EntrarOng() {
     const navigation = useNavigation();
     const [emailOng, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState("")
 
     const entrar = () => {
 
@@ -28,17 +31,19 @@ export default function EntrarOng() {
 
         app.loginOng(data)
             .then((response) => {
+                setLoading(false)
                 navigation.reset({
+                    index: 0,
                     routes: [{ name: "InicioOng" }]
                 })
             })
             .catch((error) => {
+                setLoading(false)
                 Alert.alert("Erro ao logar :(", "Usuario ou senha invalidos")
             })
     }
 
     return (
-
         <View style={styles.container}>
             <animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
                 <Text style={styles.message}>Olá você entrou como Ong!!!</Text>
@@ -61,7 +66,11 @@ export default function EntrarOng() {
                 />
 
                 <TouchableOpacity style={styles.button} onPress={() => entrar()}>
-                    <Text style={styles.textButton}>Entrar</Text>
+                    {loading ? (
+                        <ActivityIndicator size="small" color="#FFF" />
+                    ) : (
+                        <Text style={styles.textButton}>Entrar</Text>
+                    )}
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate("CadastroOng")}>
